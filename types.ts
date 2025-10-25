@@ -8,6 +8,7 @@ export enum Language {
   TE = 'తెలుగు', // Telugu
   MR = 'मराठी', // Marathi
   GU = 'ગુજરાતી', // Gujarati
+  KN = 'ಕನ್ನಡ', // Kannada
 }
 
 export enum Role {

@@ -1,5 +1,8 @@
 {
   "name": " WADA Expert Chatbot",
   "description": "An AI-powered chatbot that acts as a WADA expert, answering questions about anti-doping rules and checking food products/ingredients against the WADA Prohibited List in both English and Hindi.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
 }
