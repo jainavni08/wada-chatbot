@@ -144,11 +144,11 @@ const ChatMessage: React.FC<{ message: Message }> = ({ message }) => {
           )}
         </svg>
       </div>
-      <div className={`p-4 rounded-lg max-w-lg ${isModel ? 'bg-gray-700 text-gray-200' : 'bg-green-600 text-white'}`}>
+      <div className={`p-3 sm:p-4 rounded-lg max-w-[85%] sm:max-w-lg ${isModel ? 'bg-gray-700 text-gray-200' : 'bg-green-600 text-white'}`}>
         {message.imagePreview && (
           <img src={message.imagePreview} alt="upload preview" className="rounded-md mb-2 max-h-48" />
         )}
-        <p className="whitespace-pre-wrap">{message.text}</p>
+        <p className="whitespace-pre-wrap break-words">{message.text}</p>
       </div>
     </div>
   );
@@ -220,7 +220,7 @@ const CameraModal: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-gray-800 rounded-lg p-4 relative max-w-3xl w-full">
         <video ref={videoRef} autoPlay playsInline className="w-full rounded-md"></video>
         <canvas ref={canvasRef} className="hidden"></canvas>
@@ -323,7 +323,7 @@ const ChatInput: React.FC<{ onSendMessage: (text: string, image: ImageFile | nul
   return (
     <>
       {showCamera && <CameraModal onClose={() => setShowCamera(false)} onCapture={handleCapturePhoto} />}
-      <div className="p-4 bg-gray-800 border-t border-gray-700">
+      <div className="p-2 sm:p-4 bg-gray-800 border-t border-gray-700">
         {image && (
           <div className="relative inline-block mb-2">
             <img src={image.preview} alt="preview" className="h-24 w-24 object-cover rounded-lg" />
@@ -346,12 +346,12 @@ const ChatInput: React.FC<{ onSendMessage: (text: string, image: ImageFile | nul
                 handleSend();
               }
             }}
-            placeholder="Type your message or upload an image..."
-            className="w-full bg-gray-700 text-white rounded-lg p-3 pr-40 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="Type your message..."
+            className="w-full bg-gray-700 text-white rounded-lg p-2 sm:p-3 pr-28 sm:pr-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-sm sm:placeholder:text-base"
             rows={1}
             disabled={isLoading}
           />
-          <div className="absolute right-2 flex items-center">
+          <div className="absolute right-1 sm:right-2 flex items-center">
             <input
               type="file"
               ref={fileInputRef}
@@ -439,13 +439,13 @@ const LanguageSelector: React.FC<{ language: Language; setLanguage: (lang: Langu
         <div ref={dropdownRef} className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-between w-32 px-3 py-2 text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
+                className="flex items-center justify-between w-28 sm:w-32 px-3 py-2 text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
             >
                 <span>{language}</span>
                 <ChevronDownIcon className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </button>
             {isOpen && (
-                <div className="absolute right-0 w-48 mt-2 origin-top-right bg-gray-700 divide-y divide-gray-600 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 max-h-60 overflow-y-auto">
+                <div className="absolute right-0 w-40 sm:w-48 mt-2 origin-top-right bg-gray-700 divide-y divide-gray-600 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 max-h-60 overflow-y-auto">
                     <div className="py-1">
                         {Object.values(Language).map((lang) => (
                             <button
@@ -524,11 +524,11 @@ export default function App() {
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white font-sans">
       <header className="p-4 bg-gray-800 border-b border-gray-700 shadow-lg flex justify-between items-center">
-        <h1 className="text-xl font-bold text-indigo-400">WADA Expert Chatbot</h1>
+        <h1 className="text-lg sm:text-xl font-bold text-indigo-400">WADA Expert Chatbot</h1>
         <LanguageSelector language={language} setLanguage={setLanguage} />
       </header>
       
-      <main className="flex-1 overflow-y-auto p-4 md:p-6">
+      <main className="flex-1 overflow-y-auto p-2 sm:p-4 md:p-6">
         <div className="max-w-4xl mx-auto">
           {messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} />
